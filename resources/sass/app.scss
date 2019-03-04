@@ -1,6 +1,9 @@
 
 // Fonts
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+@import url('https://fonts.googleapis.com/css?family=Volkhov:400i');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
 
 /*!
  * Vali Admin
@@ -16,7 +19,7 @@
 @import '1-tools/customize-bootstrap';
 @import '1-tools/bootstrap-source/bootstrap';
 
-// Vendor plugin files 
+// Vendor plugin files
 // Can be excluded based on your needs
 @import '1-tools/dataTables.bootstrap';
 @import '1-tools/bootstrap-datepicker';
