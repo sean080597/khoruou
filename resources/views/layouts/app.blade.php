@@ -57,10 +57,15 @@
           </router-link>
         </li>
         <li>
-            <router-link to="/checkout" class="app-menu__item">
-              <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Giỏ hàng</span>
-            </router-link>
-          </li>
+          <router-link to="/checkout" class="app-menu__item">
+            <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Giỏ hàng</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/abc" class="app-menu__item">
+            <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">dubo</span>
+          </router-link>
+        </li>
       </ul>
     </aside>
 

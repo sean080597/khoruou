@@ -16,7 +16,7 @@ class CreateRuouTable extends Migration
         Schema::create('ruou', function (Blueprint $table) {
             $table->increments('MaRuou');
             $table->char('TenRuou');
-            $table->string('AnhRuou');
+            $table->string('AnhRuou')->nullable();
             $table->integer('SoLuong')->unsigned();
             $table->text('Mota')->nullable();
             $table->integer('DonGia')->unsigned();
