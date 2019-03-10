@@ -16,3 +16,14 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResources(['ruou'=>'RuouController']);
+
+Route::get('/SPTheoLoai/{MaLoai}', 'PhanLoaiController@SPTheoLoai');
+Route::apiResources(['phanloai'=>'PhanLoaiController']);
+
+Route::get('/SPTheoNCC/{MaNCC}', 'Nhacungcap_Controller@SPTheoNCC');
+Route::apiResources(['nhacungcap'=>'Nhacungcap_Controller']);
+
+Route::get('/SPTheoNSX/{MaNSX}', 'Nhasanxuat_Controller@SPTheoNSX');
+Route::apiResources(['nhasanxuat'=>'Nhasanxuat_Controller']);

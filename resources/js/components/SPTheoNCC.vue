@@ -1,19 +1,8 @@
 <template>
-<div>
-    <div class="app-title">
-        <div>
-            <h1><i class="fa fa-dashboard"></i> Trang chủ</h1>
-            <!-- <p>Start a beautiful journey here</p> -->
-        </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        </ul>
-    </div>
-
     <div class="row">
 
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="margin-bottom:15px"
-        v-for="(ruou, index) in ds_ruou" :key="ruou.MaRuou">
+        v-for="(ruou, index) in SP_NCC" :key="ruou.MaRuou">
             <div class="card" style="width: 100%">
                 <img class="card-img-top" :src="ruou.AnhRuou" alt="Card image cap" style="height:200px;">
                 <div class="card-body">
@@ -27,26 +16,26 @@
         </div>
 
     </div>
-
-</div>
 </template>
-
 <script>
 export default {
     data() {
         return {
-            ds_ruou:{}
+            MaNCC: this.$route.params.MaNCC,
+            SP_NCC: {}
         }
-    },
+    },    
     methods: {
-        loadSP(){
-            axios.get('/api/ruou').then((data)=>{
-                this.ds_ruou=data.data
-            })
+        LoadSPTheoNCC(){
+            axios.get('/api/SPTheoNCC/'+this.MaNCC).then(
+                data=>{
+                    this.SP_NCC=data.data
+                }
+            )
         }
     },
     created() {
-        this.loadSP();  
+        this.LoadSPTheoNCC();
     },
 }
 </script>

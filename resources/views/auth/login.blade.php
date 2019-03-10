@@ -1,40 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
-  <meta name="author" content="GeeksLabs">
-  <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-
-  <title>{{ config('app.name', 'Laravel') }}</title>
-  <!-- Styles -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-
-<body class="login-img3-body">
-  <div class="container">
-    <form class="login-form" action="index.html">
-      <div class="login-wrap">
-        <p class="login-img"><i class="icon_lock_alt"></i></p>
-        <div class="input-group">
-          <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input type="text" class="form-control" placeholder="Tên đăng nhập" autofocus>
-        </div>
-        <div class="input-group">
-          <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-          <input type="password" class="form-control" placeholder="Mật khẩu">
-        </div>
-        <label class="checkbox">
-            <input type="checkbox" value="remember-me"> Lưu mật khẩu
-            <span class="pull-right"> <a href="#"> Quên mật khẩu?</a></span>
-        </label>
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Đăng nhập</button>
-        <button class="btn btn-info btn-lg btn-block" type="submit">Đăng ký</button>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+  </head>
+  <body>
+    <section class="material-half-bg">
+      <div class="cover"></div>
+    </section>
+    <section class="login-content">
+      <div class="logo">
+        <h1>Rượu Rượu</h1>
       </div>
-    </form>
-  </div>
-</body>
+      <div class="login-box">
+        <form class="login-form" action="/">
+          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Đăng nhập</h3>
+          <div class="form-group">
+            <label class="control-label">Tên tài khoản</label>
+            <input class="form-control" type="text" placeholder="Email" autofocus>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Mật khẩu</label>
+            <input class="form-control" type="password" placeholder="Password">
+          </div>
+          <br>
+          <div class="form-group btn-container">
+            <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>Đăng nhập</button>
+          </div>
+        </form>
+        {{-- <form class="forget-form" action="index.html">
+          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
+          <div class="form-group">
+            <label class="control-label">EMAIL</label>
+            <input class="form-control" type="text" placeholder="Email">
+          </div>
+          <div class="form-group btn-container">
+            <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
+          </div>
+          <div class="form-group mt-3">
+            <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
+          </div>
+        </form> --}}
+      </div>
+    </section>
+    <!-- Essential javascripts for application to work-->
+    <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('theme/js/popper.min.js')}}"></script>
+    <script src="{{asset('theme/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('theme/js/main.js')}}" defer></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="{{asset('theme/js/plugins/pace.min.js')}}"></script>
+    <script type="text/javascript">
+      // Login Page Flipbox control
+      $('.login-content [data-toggle="flip"]').click(function() {
+      	$('.login-box').toggleClass('flipped');
+      	return false;
+      });
+    </script>
+  </body>
 </html>

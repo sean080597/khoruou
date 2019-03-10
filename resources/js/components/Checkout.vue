@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-6 offset-3">
-                    <h1 class="module-title font-alt">Checkout</h1>
+                    <h1 class="module-title font-alt"></h1>
                 </div>
             </div>
             <hr class="divider-w pt-20">
@@ -12,12 +12,12 @@
                 <table class="table table-striped table-border checkout-table">
                     <tbody>
                     <tr>
-                        <th class="hidden-xs">Item</th>
-                        <th>Description</th>
-                        <th class="hidden-xs">Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Remove</th>
+                        <th class="hidden-xs">Hình ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th class="hidden-xs">Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng</th>
+                        <th>Xóa</th>
                     </tr>
                     <tr>
                         <td class="hidden-xs"><a href="#"><img class="product-img" src="https://wallimpex.com/data/out/40/cool-backgrounds-hd-4369235.jpg" alt="Accessories Pack"/></a></td>
@@ -60,24 +60,24 @@
             <div class="row mt-5">
                 <div class="col-5 offset-7">
                     <div>
-                        <h4 class="font-alt">Cart Totals</h4>
+                        <h4 class="font-alt">Tổng hóa đơn</h4>
                         <table class="table table-striped table-border checkout-table">
                             <tbody>
                                 <tr>
-                                    <th>Cart Subtotal :</th>
+                                    <th>Tổng tiền :</th>
                                     <td>£40.00</td>
                                 </tr>
                                 <tr>
-                                    <th>Shipping Total :</th>
+                                    <th>Tiền vận chuyển :</th>
                                     <td>£2.00</td>
                                 </tr>
                                 <tr>
-                                    <th>Total :</th>
+                                    <th>Thành tiền :</th>
                                     <td>£42.00</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-lg btn-block btn-round btn-d" type="submit">Proceed to Checkout</button>
+                        <button class="btn btn-lg btn-block btn-round btn-d" type="submit">Xác nhận hóa đơn</button>
                     </div>
                 </div>
             </div>
