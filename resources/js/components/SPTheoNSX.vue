@@ -36,6 +36,16 @@ export default {
     },
     created() {
         this.LoadSPTheoNSX();
+        Fire.$on('Searching',()=>{
+            let query = this.$parent.search;
+            axios.get('/api/TimKiemRuou?q='+query+'&nsx='+this.MaNSX)
+            .then((data)=>{
+                this.SP_NSX=data.data
+            })
+            .catch(()=>{
+                alert('Error');
+            })
+        })
     },
 }
 </script>

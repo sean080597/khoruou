@@ -63,9 +63,33 @@ class RuouController extends Controller
     }
     public function TimKiemRuou(){
         if($Search = \Request::get('q')){
-            return ruou::where('TenRuou', 'LIKE', "%$Search%")->get();    
-        }else
-            return ruou::all();
+            if($ncc = \Request::get('ncc')){
+                return ruou::where('TenRuou', 'LIKE', "%$Search%")
+                    ->where('MaNCC', $ncc)->get();
+            }
+            if($nsx = \Request::get('nsx')){
+                return ruou::where('TenRuou', 'LIKE', "%$Search%")
+                    ->where('MaNSX', $nsx)->get();
+            }
+            if($loai = \Request::get('loai')){
+                return ruou::where('TenRuou', 'LIKE', "%$Search%")
+                    ->where('MaLoai', $loai)->get();
+            }else{
+                return ruou::where('TenRuou', 'LIKE', "%$Search%")->get();
+            }
+        }else{
+            if($ncc = \Request::get('ncc')){
+                return ruou::where('MaNCC', $ncc)->get();
+            }
+            if($nsx = \Request::get('nsx')){
+                return ruou::where('MaNSX', $nsx)->get();
+            }
+            if($loai = \Request::get('loai')){
+                return ruou::where('MaLoai', $loai)->get();
+            }else{
+                return ruou::all();
+            }
+        }
     }
-    
+
 }

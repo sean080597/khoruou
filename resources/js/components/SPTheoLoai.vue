@@ -36,6 +36,16 @@ export default {
     },
     created() {
         this.LoadSPTheoLoai();
+        Fire.$on('Searching',()=>{
+            let query = this.$parent.search;
+            axios.get('/api/TimKiemRuou?q='+query+'&loai='+this.MaLoai)
+            .then((data)=>{
+                this.SP_loai=data.data
+            })
+            .catch(()=>{
+                alert('Error');
+            })
+        })
     },
 }
 </script>

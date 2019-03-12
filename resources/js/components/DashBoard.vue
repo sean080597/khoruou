@@ -46,7 +46,7 @@ export default {
         }
     },
     created() {
-        this.loadSP();  
+        this.loadSP();
         Fire.$on('Searching',()=>{
             let query = this.$parent.search;
             axios.get('/api/TimKiemRuou?q='+query)

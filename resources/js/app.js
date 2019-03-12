@@ -30,7 +30,7 @@ const app = new Vue({
     methods: {
         Timkiem(){
             Fire.$emit('Searching');
-        }  
+        }
     },
 });
 

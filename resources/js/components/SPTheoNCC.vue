@@ -24,7 +24,7 @@ export default {
             MaNCC: this.$route.params.MaNCC,
             SP_NCC: {}
         }
-    },    
+    },
     methods: {
         LoadSPTheoNCC(){
             axios.get('/api/SPTheoNCC/'+this.MaNCC).then(
@@ -36,6 +36,16 @@ export default {
     },
     created() {
         this.LoadSPTheoNCC();
+        Fire.$on('Searching',()=>{
+            let query = this.$parent.search;
+            axios.get('/api/TimKiemRuou?q='+query+'&ncc='+this.MaNCC)
+            .then((data)=>{
+                this.SP_NCC=data.data
+            })
+            .catch(()=>{
+                alert('Error');
+            })
+        })
     },
 }
 </script>
