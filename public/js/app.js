@@ -2006,7 +2006,17 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    var _this2 = this;
+
     this.loadSP();
+    Fire.$on('Searching', function () {
+      var query = _this2.$parent.search;
+      axios.get('/api/TimKiemRuou?q=' + query).then(function (data) {
+        _this2.ds_ruou = data.data;
+      }).catch(function () {
+        alert('Error');
+      });
+    });
   }
 });
 
@@ -18901,9 +18911,18 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('example-component', __webp
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('phanloaimenu', __webpack_require__(/*! ./components/menu/PhanLoai.vue */ "./resources/js/components/menu/PhanLoai.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('nhacungcapmenu', __webpack_require__(/*! ./components/menu/Nhacungcap.vue */ "./resources/js/components/menu/Nhacungcap.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('nhasanxuatmenu', __webpack_require__(/*! ./components/menu/Nhasanxuat.vue */ "./resources/js/components/menu/Nhasanxuat.vue").default);
+window.Fire = new vue__WEBPACK_IMPORTED_MODULE_1___default.a();
 var app = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   el: '#app',
-  router: router
+  router: router,
+  data: {
+    search: ''
+  },
+  methods: {
+    Timkiem: function Timkiem() {
+      Fire.$emit('Searching');
+    }
+  }
 });
 
 /***/ }),

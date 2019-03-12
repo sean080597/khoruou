@@ -47,6 +47,16 @@ export default {
     },
     created() {
         this.loadSP();  
+        Fire.$on('Searching',()=>{
+            let query = this.$parent.search;
+            axios.get('/api/TimKiemRuou?q='+query)
+            .then((data)=>{
+                this.ds_ruou=data.data
+            })
+            .catch(()=>{
+                alert('Error');
+            })
+        })
     },
 }
 </script>

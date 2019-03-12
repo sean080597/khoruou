@@ -61,4 +61,11 @@ class RuouController extends Controller
     {
         //
     }
+    public function TimKiemRuou(){
+        if($Search = \Request::get('q')){
+            return ruou::where('TenRuou', 'LIKE', "%$Search%")->get();    
+        }else
+            return ruou::all();
+    }
+    
 }

@@ -48,7 +48,7 @@
       </div>
       <ul class="app-menu">
         <li>
-            <input class="app-menu__item fa fa-dashboard" type="search" placeholder="Tìm kiếm"  style="margin-left: 10px">
+            <input class="app-menu__item fa fa-dashboard" type="search" placeholder="Tìm kiếm"  style="margin-left: 10px" v-model="search" aria-label="Search" @keyup="Timkiem">
         </li>
         <li>
           <router-link to="/" class="app-menu__item">
