@@ -16,7 +16,7 @@ class users_seeder extends Seeder
             [
                 'TenNV' => 'Nhi',
                 'email' => '128bc@gmail.com',
-                'MatKhau' => '1',
+                'password' => '1',
                 'SoDienThoai' => '0337247773',
                 'DChi' => '82 nguyễn xí',
                 'MaCV' => 'NV',
@@ -26,7 +26,7 @@ class users_seeder extends Seeder
             [
                 'TenNV' => 'Nhím',
                 'email' => '128bcd@gmail.com',
-                'MatKhau' => '2',
+                'password' => '2',
                 'SoDienThoai' => '0337247773',
                 'DChi' => '823 nguyễn xí',
                 'MaCV' => 'QL',
@@ -36,14 +36,13 @@ class users_seeder extends Seeder
             [
                 'TenNV' => 'Nhã',
                 'email' => '128b@gmail.com',
-                'MatKhau' => '3',
+                'password' => '3',
                 'SoDienThoai' => '0337247774',
                 'DChi' => '8 nguyễn xí',
                 'MaCV' => 'GD',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
-         
         ]);
     }
 }
