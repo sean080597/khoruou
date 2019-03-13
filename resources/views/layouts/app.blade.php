@@ -31,7 +31,16 @@
           <ul class="dropdown-menu dropdown-menu-right">
             <li><a class="dropdown-item" href="#"><i class="fa fa-cog fa-lg"></i> Cài đặt</a></li>
             <li><a class="dropdown-item" href="#"><i class="fa fa-user fa-lg"></i> Thông tin cá nhân</a></li>
-            <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out fa-lg"></i> Đăng xuất</a></li>
+            <li>
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                <i class="fa fa-sign-out fa-lg"></i> Đăng xuất
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+            </li>
           </ul>
         </li>
       </ul>
@@ -55,11 +64,11 @@
             <i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Trang chủ</span>
           </router-link>
         </li>
-        
+
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Loại rượu</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <phanloaimenu></phanloaimenu>
         </li>
-        
+
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Nhà cung cấp</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <nhacungcapmenu></nhacungcapmenu>
         </li>
@@ -67,7 +76,7 @@
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Nhà sản xuất</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <nhasanxuatmenu></nhasanxuatmenu>
         </li>
-         
+
         <li>
           <router-link to="/checkout" class="app-menu__item">
             <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Giỏ hàng</span>

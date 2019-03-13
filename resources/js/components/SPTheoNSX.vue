@@ -2,7 +2,7 @@
     <div class="row">
 
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="margin-bottom:15px"
-        v-for="(ruou, index) in SP_NSX" :key="ruou.MaRuou">
+        v-for="(ruou) in SP_NSX" :key="ruou.MaRuou">
             <div class="card" style="width: 100%">
                 <img class="card-img-top" :src="ruou.AnhRuou" alt="Card image cap" style="height:200px;">
                 <div class="card-body">
@@ -24,7 +24,7 @@ export default {
             MaNSX: this.$route.params.MaNSX,
             SP_NSX: {}
         }
-    },    
+    },
     methods: {
         LoadSPTheoNSX(){
             axios.get('/api/SPTheoNSX/'+this.MaNSX).then(
