@@ -19,7 +19,7 @@ class CreateHoadonTable extends Migration
             $table->integer('MaKH')->unsigned();
             $table->integer('MaNV')->unsigned();
             $table->foreign('MaKH')->references('MaKH')->on('khachhang')->onUpdate('cascade');
-            $table->foreign('MaNV')->references('MaNV')->on('users')->onUpdate('cascade');
+            $table->foreign('MaNV')->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();
         });
     }
