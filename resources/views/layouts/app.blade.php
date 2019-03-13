@@ -79,7 +79,7 @@
 
         <li>
           <router-link to="/checkout" class="app-menu__item">
-            <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Giỏ hàng</span>
+            <giohangmenu></giohangmenu>
           </router-link>
         </li>
 
