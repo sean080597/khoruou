@@ -16,7 +16,8 @@ export default {
         }
     },
     created() {
-        
+        //set cartcount to vuex
+        this.$store.commit('SET_CARTS');
     },
 }
 </script>

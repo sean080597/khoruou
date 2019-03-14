@@ -2667,7 +2667,10 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.getters.getCartCount;
     }
   },
-  created: function created() {}
+  created: function created() {
+    //set cartcount to vuex
+    this.$store.commit('SET_CARTS');
+  }
 });
 
 /***/ }),
@@ -21310,7 +21313,18 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      state.cartCount++;
+      state.cartCount++; //clear localStorage & set again
+      // localStorage.removeItem('khoruou_carts')
+
+      localStorage.setItem('khoruou_carts', JSON.stringify({
+        carts: state.carts,
+        cartcount: state.cartCount
+      }));
+    },
+    SET_CARTS: function SET_CARTS(state) {
+      var localStored = JSON.parse(localStorage.getItem('khoruou_carts'));
+      state.carts = localStored.carts;
+      state.cartCount = localStored.cartcount;
     }
   },
   actions: {}

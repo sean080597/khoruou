@@ -31,7 +31,20 @@ export default{
                 });
             }
             state.cartCount++;
+            //clear localStorage & set again
+            // localStorage.removeItem('khoruou_carts')
+            localStorage.setItem('khoruou_carts',
+                JSON.stringify({
+                    carts: state.carts,
+                    cartcount: state.cartCount
+                })
+            )
         },
+        SET_CARTS(state){
+            let localStored = JSON.parse(localStorage.getItem('khoruou_carts'))
+            state.carts = localStored.carts
+            state.cartCount = localStored.cartcount
+        }
     },
     actions:{}
 }
