@@ -21,7 +21,7 @@
                     <p class="card-text">{{ruou.DonGia}} VNĐ</p>
                     <p class="card-text">Còn {{ruou.SoLuong}} sản phẩm</p>
                     <!--p class="card-text">Rượu bán chó uống</p-->
-                    <button class="btn btn-primary" v-on:click="AddCart(ruou)">Thêm vào giỏ</button>
+                    <button class="btn btn-primary" @click=addToCart(ruou)>Thêm vào giỏ</button>
                 </div>
             </div>
         </div>
@@ -36,26 +36,6 @@ export default {
     data() {
         return {
             ds_ruou:{},
-            ruou:{
-                MaRuou:'',
-                AnhRuou:'',
-                TenRuou:'',
-                DonGia:'',
-                SoLuong:''
-            },
-            add:true,
-            edit:false,
-            giohang:[],
-            themgiohang:{
-                MaRuou:'',
-                AnhRuou:'',
-                TenRuou:'',
-                DonGia:'',
-                SoLuong:''
-            },
-            badge:'0',
-            soluong:'1',
-            tongtien:'0'
         }
     },
     methods: {
@@ -64,23 +44,12 @@ export default {
                 this.ds_ruou=data.data
             })
         },
-        AddCart(sp){
-            // alert(sp.MaRuou)
-            // alert(sp.TenRuou)
-             this.themgiohang.MaRuou = sp.MaRuou;
-            // this.themgiohang.AnhRuou = sp.AnhRuou;
-             this.themgiohang.TenRuou = sp.TenRuou;
-            // this.themgiohang.DonGia = sp.DonGia;
-            // this.themgiohang.soluong = sp.SoLuong;
-            // this.giohang.push(this.themgiohang)
-            // // this.themgiohang = {}
-            // this.StoreCart()
-        },
-        StoreCart(){
-            let data = JSON.stringify(this.giohang)
-            localStorage.setItem('giohang',data)
-            this.badge = this.giohang.length
+        addToCart(item) {
+            this.$store.commit('ADD_TO_CART', item);
         }
+    },
+    computed: {
+        
     },
     created() {
         this.loadSP();
