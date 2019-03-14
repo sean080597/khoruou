@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-6 offset-3">
-                    <h1 class="module-title font-alt"></h1>
+                    <h1 class="module-title font-alt">Check out</h1>
                 </div>
             </div>
             <hr class="divider-w pt-20">
@@ -19,21 +19,16 @@
                         <th>Tổng</th>
                         <th>Xóa</th>
                     </tr>
-                    <tr>
-                        <td class="hidden-xs"><a href="#"><img class="product-img" src="https://wallimpex.com/data/out/40/cool-backgrounds-hd-4369235.jpg" alt="Accessories Pack"/></a></td>
-                        <td><h5 class="product-title font-alt">Accessories Pack</h5></td>
-                        <td class="hidden-xs"><h5 class="product-title font-alt">£20.00</h5></td>
-                        <td><input class="form-control" type="number" name="" value="1" max="50" min="1"/></td>
-                        <td><h5 class="product-title font-alt">£20.00</h5></td>
-                        <td class="pr-remove"><a href="#" title="Remove"><i class="fa fa-times"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td class="hidden-xs"><a href="#"><img class="product-img" src="https://static3.scirra.net/images/newstore/products/2688/dark%20fantasy%20720x320.png" alt="Men’s Casual Pack"/></a></td>
-                        <td><h5 class="product-title font-alt">Men’s Casual Pack</h5></td>
-                        <td class="hidden-xs"><h5 class="product-title font-alt">£20.00</h5></td>
-                        <td><input class="form-control" type="number" name="" value="1" max="50" min="1"/></td>
-                        <td><h5 class="product-title font-alt">£20.00</h5></td>
-                        <td class="pr-remove"><a href="#" title="Remove"><i class="fa fa-times"></i></a></td>
+                    <tr v-for="(item, index) in carts.ls_prod" :key="item.id">
+                        <td class="hidden-xs"><a href="#"><img class="product-img" :src="item.image" :alt="item.name"/></a></td>
+                        <td><h5 class="product-title font-alt">{{ item.name }}</h5></td>
+                        <td class="hidden-xs"><h5 class="product-title font-alt">{{ item.price | formatMoney }}</h5></td>
+                        <td><input class="form-control" type="number" name="" max="50" min="1"
+                        onkeydown="javascript: return event.keyCode == 69 || event.keyCode == 189 ? false : true"
+                        v-model.number="carts.ls_prod[index].quantity"
+                        @input="updateCart(item)"></td>
+                        <td><h5 class="product-title font-alt">{{ item.totalPrice | formatMoney }}</h5></td>
+                        <td class="pr-remove"><a href="#" @click="removeItem(index)" title="Remove"><i class="fa fa-times"></i></a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -65,25 +60,65 @@
                             <tbody>
                                 <tr>
                                     <th>Tổng tiền :</th>
-                                    <td>£40.00</td>
+                                    <td>{{ carts.cartTotal | formatMoney }}</td>
                                 </tr>
                                 <tr>
                                     <th>Tiền vận chuyển :</th>
-                                    <td>£2.00</td>
+                                    <td>{{ 30000 | formatMoney }}</td>
                                 </tr>
                                 <tr>
                                     <th>Thành tiền :</th>
-                                    <td>£42.00</td>
+                                    <td>{{ carts.cartTotal + 30000 | formatMoney }}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-lg btn-block btn-round btn-d" type="submit">Xác nhận hóa đơn</button>
+                        <button class="btn btn-lg btn-block btn-round btn-d" type="submit" @click="printPage">Xác nhận hóa đơn</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+          carts: {}
+        }
+    },
+    methods: {
+        updateCart(prod){
+          prod.totalPrice = prod.price * prod.quantity;
+          //calc total of order
+          this.calcTotal()
+        },
+        removeItem(index){
+          if(confirm('Bạn có muốn xóa khỏi giỏ hàng?')){
+            this.carts.ls_prod.splice(index, 1)
+            //calc total of order
+            this.calcTotal()
+          }
+        },
+        calcTotal(){
+          let total = 0;
+          for (let item of this.carts.ls_prod) {
+              total += item.totalPrice;
+          }
+          this.carts.cartTotal = total
+        },
+        printPage(){
+          window.print()
+        }
+    },
+    computed: {
+      
+    },
+    mounted() {
+      this.carts = this.$store.getters.getCarts;
+    },
+}
+</script>
 
 <style scoped>
 .product-img{
@@ -136,10 +171,8 @@
 
 .checkout-table tr td,
 .checkout-table tr th {
-  border-top: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
-  border-right: 1px solid #e5e5e5;
-  border-left: 1px solid #e5e5e5;
+  font-family: "Roboto Condensed", sans-serif;
+  border: 1px solid #e5e5e5;
 }
 
 .checkout-table tbody tr td:first-child,
@@ -171,20 +204,3 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 </style>
-
-
-<script>
-export default {
-    data() {
-        return {
-            
-        }
-    },
-    methods: {
-        
-    },
-    created() {
-        
-    },
-}
-</script>

@@ -1,15 +1,21 @@
 export default{
     state:{
         welcomeMessage: 'Welcome to my vue App',
-        carts: [],
-        cartCount: 0,
+        carts:{
+            ls_prod: [],
+            cartCount: 0,
+            cartTotal: 0
+        },
     },
     getters:{
         welcome(state){
             return state.welcomeMessage
         },
+        getCarts(state){
+            return state.carts
+        },
         getCartCount(state){
-            return state.cartCount
+            return state.carts.cartCount
         },
     },
     mutations:{
@@ -31,19 +37,29 @@ export default{
                 });
             }
             state.cartCount++;
+
+            //calc total of order
+            let total = 0;
+            for (let item of state.carts) {
+                total += item.totalPrice;
+            }
             //clear localStorage & set again
             // localStorage.removeItem('khoruou_carts')
             localStorage.setItem('khoruou_carts',
                 JSON.stringify({
                     carts: state.carts,
-                    cartcount: state.cartCount
+                    cartcount: state.cartCount,
+                    totalOrder: total.toFixed(2)
                 })
             )
         },
         SET_CARTS(state){
             let localStored = JSON.parse(localStorage.getItem('khoruou_carts'))
-            state.carts = localStored.carts
-            state.cartCount = localStored.cartcount
+            if(localStored != null){
+                state.carts.ls_prod = localStored.carts
+                state.carts.cartCount = localStored.cartcount
+                state.carts.cartTotal = localStored.totalOrder
+            }
         }
     },
     actions:{}

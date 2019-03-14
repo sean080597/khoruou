@@ -25,7 +25,9 @@ const router = new VueRouter({
 });
 
 //filter
-Vue.filter('formatMoney', accounting.formatMoney)
+Vue.filter('formatMoney', function(val){
+    return accounting.formatMoney(val, "", 0, ",", ".") + ' VNĐ'
+})
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('phanloaimenu', require('./components/menu/PhanLoai.vue').default);

@@ -2247,105 +2247,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      carts: {}
+    };
   },
-  methods: {},
-  created: function created() {}
+  methods: {
+    updateCart: function updateCart(prod) {
+      prod.totalPrice = prod.price * prod.quantity; //calc total of order
+
+      this.calcTotal();
+    },
+    removeItem: function removeItem(index) {
+      if (confirm('Bạn có muốn xóa khỏi giỏ hàng?')) {
+        this.carts.ls_prod.splice(index, 1); //calc total of order
+
+        this.calcTotal();
+      }
+    },
+    calcTotal: function calcTotal() {
+      var total = 0;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.carts.ls_prod[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var item = _step.value;
+          total += item.totalPrice;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      this.carts.cartTotal = total;
+    },
+    printPage: function printPage() {
+      window.print();
+    }
+  },
+  computed: {},
+  mounted: function mounted() {
+    this.carts = this.$store.getters.getCarts;
+  }
 });
 
 /***/ }),
@@ -2801,7 +2757,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.product-img[data-v-715e4fb1]{\r\n    width: 100%;\n}\n.module[data-v-715e4fb1]{\r\n  position: relative;\r\n  padding: 50px 0;\r\n  background-repeat: no-repeat;\r\n  background-position: 50% 50%;\r\n  background-size: cover;\r\n  background-color: #fff;\n}\n.module-title[data-v-715e4fb1] {\r\n  position: relative;\r\n  letter-spacing: 4px;\r\n  text-align: center;\r\n  font-weight: 400;\r\n  font-size: 30px;\r\n  color: #111;\r\n  margin: 0 0 70px;\n}\n.font-alt[data-v-715e4fb1] {\r\n  font-family: \"Roboto Condensed\", sans-serif;\r\n  text-transform: uppercase;\r\n  letter-spacing: 2px;\n}\n.product-title[data-v-715e4fb1] {\r\n  margin: 0 0 20px;\r\n  color: #111;\n}\r\n/* Sections dividers */\n.divider-w[data-v-715e4fb1] {\r\n  border-top: 1px solid #eaeaea;\r\n  margin: 0;\n}\r\n/* table */\n.checkout-table[data-v-715e4fb1] {\r\n  border: 1px solid #e5e5e5;\n}\n.checkout-table > tbody > tr > td[data-v-715e4fb1],\r\n.checkout-table > tbody > tr > th[data-v-715e4fb1],\r\n.checkout-table > tfoot > tr > td[data-v-715e4fb1],\r\n.checkout-table > tfoot > tr > th[data-v-715e4fb1],\r\n.checkout-table > thead > tr > td[data-v-715e4fb1],\r\n.checkout-table > thead > tr > th[data-v-715e4fb1] {\r\n  padding: 12px;\n}\n.checkout-table tr td[data-v-715e4fb1],\r\n.checkout-table tr th[data-v-715e4fb1] {\r\n  border-top: 1px solid #e5e5e5;\r\n  border-bottom: 1px solid #e5e5e5;\r\n  border-right: 1px solid #e5e5e5;\r\n  border-left: 1px solid #e5e5e5;\n}\n.checkout-table tbody tr td[data-v-715e4fb1]:first-child,\r\n.checkout-table tbody tr th[data-v-715e4fb1]:first-child {\r\n  max-width: 70px;\n}\r\n/* button */\n.btn.btn-round[data-v-715e4fb1] {\r\n  border-radius: 2px;\r\n  font: 400 16px \"Open Sans\", sans-serif;\n}\n.btn.btn-d[data-v-715e4fb1] {\r\n  background: rgba(17, 17, 17, 0.8);\r\n  color: #fff;\n}\n.btn.btn-d[data-v-715e4fb1]:hover,\r\n.btn.btn-d[data-v-715e4fb1]:focus {\r\n  background: #111111;\n}\nh1[data-v-715e4fb1], h2[data-v-715e4fb1], h3[data-v-715e4fb1], h4[data-v-715e4fb1], h5[data-v-715e4fb1], h6[data-v-715e4fb1] {\r\n  line-height: 1.4;\r\n  font-weight: 400;\n}\n.price-table h4[data-v-715e4fb1] {\r\n  color: #111;\r\n  margin: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.product-img[data-v-715e4fb1]{\r\n    width: 100%;\n}\n.module[data-v-715e4fb1]{\r\n  position: relative;\r\n  padding: 50px 0;\r\n  background-repeat: no-repeat;\r\n  background-position: 50% 50%;\r\n  background-size: cover;\r\n  background-color: #fff;\n}\n.module-title[data-v-715e4fb1] {\r\n  position: relative;\r\n  letter-spacing: 4px;\r\n  text-align: center;\r\n  font-weight: 400;\r\n  font-size: 30px;\r\n  color: #111;\r\n  margin: 0 0 70px;\n}\n.font-alt[data-v-715e4fb1] {\r\n  font-family: \"Roboto Condensed\", sans-serif;\r\n  text-transform: uppercase;\r\n  letter-spacing: 2px;\n}\n.product-title[data-v-715e4fb1] {\r\n  margin: 0 0 20px;\r\n  color: #111;\n}\r\n/* Sections dividers */\n.divider-w[data-v-715e4fb1] {\r\n  border-top: 1px solid #eaeaea;\r\n  margin: 0;\n}\r\n/* table */\n.checkout-table[data-v-715e4fb1] {\r\n  border: 1px solid #e5e5e5;\n}\n.checkout-table > tbody > tr > td[data-v-715e4fb1],\r\n.checkout-table > tbody > tr > th[data-v-715e4fb1],\r\n.checkout-table > tfoot > tr > td[data-v-715e4fb1],\r\n.checkout-table > tfoot > tr > th[data-v-715e4fb1],\r\n.checkout-table > thead > tr > td[data-v-715e4fb1],\r\n.checkout-table > thead > tr > th[data-v-715e4fb1] {\r\n  padding: 12px;\n}\n.checkout-table tr td[data-v-715e4fb1],\r\n.checkout-table tr th[data-v-715e4fb1] {\r\n  font-family: \"Roboto Condensed\", sans-serif;\r\n  border: 1px solid #e5e5e5;\n}\n.checkout-table tbody tr td[data-v-715e4fb1]:first-child,\r\n.checkout-table tbody tr th[data-v-715e4fb1]:first-child {\r\n  max-width: 70px;\n}\r\n/* button */\n.btn.btn-round[data-v-715e4fb1] {\r\n  border-radius: 2px;\r\n  font: 400 16px \"Open Sans\", sans-serif;\n}\n.btn.btn-d[data-v-715e4fb1] {\r\n  background: rgba(17, 17, 17, 0.8);\r\n  color: #fff;\n}\n.btn.btn-d[data-v-715e4fb1]:hover,\r\n.btn.btn-d[data-v-715e4fb1]:focus {\r\n  background: #111111;\n}\nh1[data-v-715e4fb1], h2[data-v-715e4fb1], h3[data-v-715e4fb1], h4[data-v-715e4fb1], h5[data-v-715e4fb1], h6[data-v-715e4fb1] {\r\n  line-height: 1.4;\r\n  font-weight: 400;\n}\n.price-table h4[data-v-715e4fb1] {\r\n  color: #111;\r\n  margin: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -3998,25 +3954,129 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "module" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6 offset-3" }, [
-            _c("h1", { staticClass: "module-title font-alt" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("hr", { staticClass: "divider-w pt-20" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12" }, [
+  return _c("section", { staticClass: "module" }, [
+    _c("div", { staticClass: "container" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("hr", { staticClass: "divider-w pt-20" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c(
+            "table",
+            { staticClass: "table table-striped table-border checkout-table" },
+            [
+              _c(
+                "tbody",
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._l(_vm.carts.ls_prod, function(item, index) {
+                    return _c("tr", { key: item.id }, [
+                      _c("td", { staticClass: "hidden-xs" }, [
+                        _c("a", { attrs: { href: "#" } }, [
+                          _c("img", {
+                            staticClass: "product-img",
+                            attrs: { src: item.image, alt: item.name }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("h5", { staticClass: "product-title font-alt" }, [
+                          _vm._v(_vm._s(item.name))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "hidden-xs" }, [
+                        _c("h5", { staticClass: "product-title font-alt" }, [
+                          _vm._v(_vm._s(_vm._f("formatMoney")(item.price)))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model.number",
+                              value: _vm.carts.ls_prod[index].quantity,
+                              expression: "carts.ls_prod[index].quantity",
+                              modifiers: { number: true }
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "number",
+                            name: "",
+                            max: "50",
+                            min: "1",
+                            onkeydown:
+                              "javascript: return event.keyCode == 69 || event.keyCode == 189 ? false : true"
+                          },
+                          domProps: {
+                            value: _vm.carts.ls_prod[index].quantity
+                          },
+                          on: {
+                            input: [
+                              function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.carts.ls_prod[index],
+                                  "quantity",
+                                  _vm._n($event.target.value)
+                                )
+                              },
+                              function($event) {
+                                return _vm.updateCart(item)
+                              }
+                            ],
+                            blur: function($event) {
+                              return _vm.$forceUpdate()
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("h5", { staticClass: "product-title font-alt" }, [
+                          _vm._v(_vm._s(_vm._f("formatMoney")(item.totalPrice)))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "pr-remove" }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#", title: "Remove" },
+                            on: {
+                              click: function($event) {
+                                return _vm.removeItem(index)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-times" })]
+                        )
+                      ])
+                    ])
+                  })
+                ],
+                2
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr", { staticClass: "divider-w" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-5" }, [
+        _c("div", { staticClass: "col-5 offset-7" }, [
+          _c("div", [
+            _c("h4", { staticClass: "font-alt" }, [_vm._v("Tổng hóa đơn")]),
+            _vm._v(" "),
             _c(
               "table",
               {
@@ -4025,177 +4085,78 @@ var staticRenderFns = [
               [
                 _c("tbody", [
                   _c("tr", [
-                    _c("th", { staticClass: "hidden-xs" }, [
-                      _vm._v("Hình ảnh")
-                    ]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Tên sản phẩm")]),
-                    _vm._v(" "),
-                    _c("th", { staticClass: "hidden-xs" }, [_vm._v("Đơn giá")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Số lượng")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Tổng")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Xóa")])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", { staticClass: "hidden-xs" }, [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("img", {
-                          staticClass: "product-img",
-                          attrs: {
-                            src:
-                              "https://wallimpex.com/data/out/40/cool-backgrounds-hd-4369235.jpg",
-                            alt: "Accessories Pack"
-                          }
-                        })
-                      ])
-                    ]),
+                    _c("th", [_vm._v("Tổng tiền :")]),
                     _vm._v(" "),
                     _c("td", [
-                      _c("h5", { staticClass: "product-title font-alt" }, [
-                        _vm._v("Accessories Pack")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "hidden-xs" }, [
-                      _c("h5", { staticClass: "product-title font-alt" }, [
-                        _vm._v("£20.00")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "number",
-                          name: "",
-                          value: "1",
-                          max: "50",
-                          min: "1"
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("h5", { staticClass: "product-title font-alt" }, [
-                        _vm._v("£20.00")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "pr-remove" }, [
-                      _c("a", { attrs: { href: "#", title: "Remove" } }, [
-                        _c("i", { staticClass: "fa fa-times" })
-                      ])
+                      _vm._v(_vm._s(_vm._f("formatMoney")(_vm.carts.cartTotal)))
                     ])
                   ]),
                   _vm._v(" "),
                   _c("tr", [
-                    _c("td", { staticClass: "hidden-xs" }, [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("img", {
-                          staticClass: "product-img",
-                          attrs: {
-                            src:
-                              "https://static3.scirra.net/images/newstore/products/2688/dark%20fantasy%20720x320.png",
-                            alt: "Men’s Casual Pack"
-                          }
-                        })
-                      ])
-                    ]),
+                    _c("th", [_vm._v("Tiền vận chuyển :")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm._f("formatMoney")(30000)))])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", [_vm._v("Thành tiền :")]),
                     _vm._v(" "),
                     _c("td", [
-                      _c("h5", { staticClass: "product-title font-alt" }, [
-                        _vm._v("Men’s Casual Pack")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "hidden-xs" }, [
-                      _c("h5", { staticClass: "product-title font-alt" }, [
-                        _vm._v("£20.00")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "number",
-                          name: "",
-                          value: "1",
-                          max: "50",
-                          min: "1"
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("h5", { staticClass: "product-title font-alt" }, [
-                        _vm._v("£20.00")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "pr-remove" }, [
-                      _c("a", { attrs: { href: "#", title: "Remove" } }, [
-                        _c("i", { staticClass: "fa fa-times" })
-                      ])
+                      _vm._v(
+                        _vm._s(
+                          _vm._f("formatMoney")(_vm.carts.cartTotal + 30000)
+                        )
+                      )
                     ])
                   ])
                 ])
               ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-lg btn-block btn-round btn-d",
+                attrs: { type: "submit" },
+                on: { click: _vm.printPage }
+              },
+              [_vm._v("Xác nhận hóa đơn")]
             )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("hr", { staticClass: "divider-w" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-5" }, [
-          _c("div", { staticClass: "col-5 offset-7" }, [
-            _c("div", [
-              _c("h4", { staticClass: "font-alt" }, [_vm._v("Tổng hóa đơn")]),
-              _vm._v(" "),
-              _c(
-                "table",
-                {
-                  staticClass: "table table-striped table-border checkout-table"
-                },
-                [
-                  _c("tbody", [
-                    _c("tr", [
-                      _c("th", [_vm._v("Tổng tiền :")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("£40.00")])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("th", [_vm._v("Tiền vận chuyển :")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("£2.00")])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("th", [_vm._v("Thành tiền :")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("£42.00")])
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-lg btn-block btn-round btn-d",
-                  attrs: { type: "submit" }
-                },
-                [_vm._v("Xác nhận hóa đơn")]
-              )
-            ])
           ])
         ])
       ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-6 offset-3" }, [
+        _c("h1", { staticClass: "module-title font-alt" }, [
+          _vm._v("Check out")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", { staticClass: "hidden-xs" }, [_vm._v("Hình ảnh")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tên sản phẩm")]),
+      _vm._v(" "),
+      _c("th", { staticClass: "hidden-xs" }, [_vm._v("Đơn giá")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Số lượng")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tổng")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Xóa")])
     ])
   }
 ]
@@ -20490,7 +20451,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]({
 
 }); //filter
 
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter('formatMoney', accounting__WEBPACK_IMPORTED_MODULE_6___default.a.formatMoney);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter('formatMoney', function (val) {
+  return accounting__WEBPACK_IMPORTED_MODULE_6___default.a.formatMoney(val, "", 0, ",", ".") + ' VNĐ';
+});
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('phanloaimenu', __webpack_require__(/*! ./components/menu/PhanLoai.vue */ "./resources/js/components/menu/PhanLoai.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('nhacungcapmenu', __webpack_require__(/*! ./components/menu/Nhacungcap.vue */ "./resources/js/components/menu/Nhacungcap.vue").default);
@@ -21280,15 +21243,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
     welcomeMessage: 'Welcome to my vue App',
-    carts: [],
-    cartCount: 0
+    carts: {
+      ls_prod: [],
+      cartCount: 0,
+      cartTotal: 0
+    }
   },
   getters: {
     welcome: function welcome(state) {
       return state.welcomeMessage;
     },
+    getCarts: function getCarts(state) {
+      return state.carts;
+    },
     getCartCount: function getCartCount(state) {
-      return state.cartCount;
+      return state.carts.cartCount;
     }
   },
   mutations: {
@@ -21313,18 +21282,49 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      state.cartCount++; //clear localStorage & set again
-      // localStorage.removeItem('khoruou_carts')
+      state.cartCount++; //calc total of order
+
+      var total = 0;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = state.carts[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var item = _step.value;
+          total += item.totalPrice;
+        } //clear localStorage & set again
+        // localStorage.removeItem('khoruou_carts')
+
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
 
       localStorage.setItem('khoruou_carts', JSON.stringify({
         carts: state.carts,
-        cartcount: state.cartCount
+        cartcount: state.cartCount,
+        totalOrder: total.toFixed(2)
       }));
     },
     SET_CARTS: function SET_CARTS(state) {
       var localStored = JSON.parse(localStorage.getItem('khoruou_carts'));
-      state.carts = localStored.carts;
-      state.cartCount = localStored.cartcount;
+
+      if (localStored != null) {
+        state.carts.ls_prod = localStored.carts;
+        state.carts.cartCount = localStored.cartcount;
+        state.carts.cartTotal = localStored.totalOrder;
+      }
     }
   },
   actions: {}
