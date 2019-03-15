@@ -13,4 +13,7 @@
 
 Auth::routes();
 
+Route::get('/getLoggedUser', function(){
+    return response()->json(auth()->user());
+})->middleware('auth');
 Route::get('{path}', "HomeController@index")->where( 'path', '([A-z\d-\/_.]+)?' );

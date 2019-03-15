@@ -14,7 +14,7 @@ class CreateChucvuTable extends Migration
     public function up()
     {
         Schema::create('chucvu', function (Blueprint $table) {
-            $table->char('MaCV',20);
+            $table->char('MaCV',20)->unique();
             $table->string('TenCV');
             $table->primary('MaCV');
             $table->timestamps();

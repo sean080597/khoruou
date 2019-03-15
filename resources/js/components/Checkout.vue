@@ -84,7 +84,8 @@
 export default {
     data() {
         return {
-          carts: {}
+          carts: {},
+          cur_user: {},
         }
     },
     methods: {
@@ -108,14 +109,29 @@ export default {
           this.carts.cartTotal = total
         },
         printPage(){
-          window.print()
+          if(confirm('Xác nhận hóa đơn này?')){
+            axios.post('/api/hoadon', {'carts': this.carts, 'user_id': this.cur_user.id})
+            .then((data)=>{
+              if(data.data.isSuccess){
+                window.print()
+                this.$store.commit('DELETE_CARTS')
+                location = '/'
+              }
+            })
+            .catch(()=>{
+              alert('Error')
+            })
+          }
         }
     },
     computed: {
       
     },
     mounted() {
-      this.carts = this.$store.getters.getCarts;
+      this.carts = this.$store.getters.getCarts
+      axios.get('/getLoggedUser').then((data) => {
+        this.cur_user = data.data
+      })
     },
 }
 </script>

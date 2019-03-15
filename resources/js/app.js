@@ -2,7 +2,7 @@
 
 window.Vue = require('vue');
 import axios from 'axios';
-window.axios = axios;
+window.axios = require('axios');
 //vue router
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -45,7 +45,10 @@ const app = new Vue({
     methods: {
         Timkiem(){
             Fire.$emit('Searching');
-        }
+        },
+    },
+    mounted() {
+        
     },
 });
 

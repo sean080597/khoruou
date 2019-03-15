@@ -48,9 +48,6 @@ export default {
             this.$store.commit('ADD_TO_CART', item);
         }
     },
-    computed: {
-        
-    },
     created() {
         this.loadSP();
         Fire.$on('Searching',()=>{

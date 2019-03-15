@@ -28,3 +28,7 @@ Route::apiResources(['nhacungcap'=>'Nhacungcap_Controller']);
 
 Route::get('/SPTheoNSX/{MaNSX}', 'Nhasanxuat_Controller@SPTheoNSX');
 Route::apiResources(['nhasanxuat'=>'Nhasanxuat_Controller']);
+
+Route::apiResources(['hoadon'=>'HoaDonController']);
+
+Route::apiResources(['user'=>'UserController']);

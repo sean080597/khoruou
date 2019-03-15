@@ -2250,7 +2250,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      carts: {}
+      carts: {},
+      cur_user: {}
     };
   },
   methods: {
@@ -2295,12 +2296,34 @@ __webpack_require__.r(__webpack_exports__);
       this.carts.cartTotal = total;
     },
     printPage: function printPage() {
-      window.print();
+      var _this = this;
+
+      if (confirm('Xác nhận hóa đơn này?')) {
+        axios.post('/api/hoadon', {
+          'carts': this.carts,
+          'user_id': this.cur_user.id
+        }).then(function (data) {
+          if (data.data.isSuccess) {
+            window.print();
+
+            _this.$store.commit('DELETE_CARTS');
+
+            location = '/';
+          }
+        }).catch(function () {
+          alert('Error');
+        });
+      }
     }
   },
   computed: {},
   mounted: function mounted() {
+    var _this2 = this;
+
     this.carts = this.$store.getters.getCarts;
+    axios.get('/getLoggedUser').then(function (data) {
+      _this2.cur_user = data.data;
+    });
   }
 });
 
@@ -2366,7 +2389,6 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.commit('ADD_TO_CART', item);
     }
   },
-  computed: {},
   created: function created() {
     var _this2 = this;
 
@@ -20428,7 +20450,7 @@ __webpack_require__.r(__webpack_exports__);
 //require('./bootstrap');
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
-window.axios = axios__WEBPACK_IMPORTED_MODULE_0___default.a; //vue router
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); //vue router
 
 
 
@@ -20471,7 +20493,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
     Timkiem: function Timkiem() {
       Fire.$emit('Searching');
     }
-  }
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -21247,7 +21270,8 @@ __webpack_require__.r(__webpack_exports__);
       ls_prod: [],
       cartCount: 0,
       cartTotal: 0
-    }
+    },
+    user_info: {}
   },
   getters: {
     welcome: function welcome(state) {
@@ -21258,21 +21282,23 @@ __webpack_require__.r(__webpack_exports__);
     },
     getCartCount: function getCartCount(state) {
       return state.carts.cartCount;
+    },
+    getUserInfo: function getUserInfo(state) {
+      return state.user_info;
     }
   },
   mutations: {
     ADD_TO_CART: function ADD_TO_CART(state, prod) {
       // console.log(prod.MaRuou + ' - '+ prod.TenRuou);
-      var found = state.carts.find(function (item) {
+      var found = state.carts.ls_prod.find(function (item) {
         return item.id == prod.MaRuou;
       });
-      console.log('Found: ' + found + ' - ' + prod.MaRuou);
 
       if (found) {
         found.quantity++;
         found.totalPrice = found.quantity * found.price;
       } else {
-        state.carts.push({
+        state.carts.ls_prod.push({
           id: prod.MaRuou,
           name: prod.TenRuou,
           image: prod.AnhRuou,
@@ -21282,7 +21308,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      state.cartCount++; //calc total of order
+      state.carts.cartCount++; //calc total of order
 
       var total = 0;
       var _iteratorNormalCompletion = true;
@@ -21290,11 +21316,10 @@ __webpack_require__.r(__webpack_exports__);
       var _iteratorError = undefined;
 
       try {
-        for (var _iterator = state.carts[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (var _iterator = state.carts.ls_prod[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var item = _step.value;
           total += item.totalPrice;
         } //clear localStorage & set again
-        // localStorage.removeItem('khoruou_carts')
 
       } catch (err) {
         _didIteratorError = true;
@@ -21312,8 +21337,8 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       localStorage.setItem('khoruou_carts', JSON.stringify({
-        carts: state.carts,
-        cartcount: state.cartCount,
+        carts: state.carts.ls_prod,
+        cartcount: state.carts.cartCount,
         totalOrder: total.toFixed(2)
       }));
     },
@@ -21325,6 +21350,16 @@ __webpack_require__.r(__webpack_exports__);
         state.carts.cartCount = localStored.cartcount;
         state.carts.cartTotal = localStored.totalOrder;
       }
+    },
+    DELETE_CARTS: function DELETE_CARTS(state) {
+      state.carts.ls_prod = [];
+      state.carts.cartCount = state.carts.cartTotal = 0;
+      localStorage.removeItem('khoruou_carts');
+    },
+    SET_USER_INFO: function SET_USER_INFO(state) {// let localStored = JSON.parse(localStorage.getItem('khoruou_userinfo'))
+      // if(localStored != null){
+      //     state.user_info = localStored
+      // }
     }
   },
   actions: {}
