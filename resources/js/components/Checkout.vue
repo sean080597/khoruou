@@ -86,27 +86,32 @@ export default {
         return {
           carts: {},
           cur_user: {},
+          isCartDeleted: false
         }
     },
     methods: {
         updateCart(prod){
           prod.totalPrice = prod.price * prod.quantity;
           //calc total of order
-          this.calcTotal()
+          this.updateCarts()
         },
         removeItem(index){
           if(confirm('Bạn có muốn xóa khỏi giỏ hàng?')){
             this.carts.ls_prod.splice(index, 1)
             //calc total of order
-            this.calcTotal()
+            this.updateCarts()
+            this.$store.commit('DELETE_ITEM', index)
           }
         },
-        calcTotal(){
+        updateCarts(){
           let total = 0;
+          let cart_count = 0;
           for (let item of this.carts.ls_prod) {
               total += item.totalPrice;
+              cart_count += item.quantity;
           }
           this.carts.cartTotal = total
+          this.carts.cartCount = cart_count
         },
         printPage(){
           if(confirm('Xác nhận hóa đơn này?')){
@@ -114,8 +119,15 @@ export default {
             .then((data)=>{
               if(data.data.isSuccess){
                 window.print()
+<<<<<<< HEAD
                 this.$store.commit('DELETE_CARTS')
                 this.$router.push ('/')
+=======
+                this.$store.dispatch('delete_carts')
+
+                this.isCartDeleted = true
+                this.$router.push('/')
+>>>>>>> 1642c826c4f8ec8418feac74916e5222a8cadcca
               }
             })
             .catch(()=>{
@@ -124,14 +136,18 @@ export default {
           }
         }
     },
-    computed: {
-      
-    },
     mounted() {
       this.carts = this.$store.getters.getCarts
-      axios.get('/getLoggedUser').then((data) => {
-        this.cur_user = data.data
-      })
+      if(this.carts.cartCount < 1){
+        this.$router.push('/')
+      }else{
+        axios.get('/getLoggedUser').then((data) => {
+          this.cur_user = data.data
+        })
+      }
+    },
+    destroyed() {
+      if(!this.isCartDeleted) this.$store.dispatch('update_carts', this.carts)
     },
 }
 </script>

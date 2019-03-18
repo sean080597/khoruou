@@ -46,6 +46,7 @@ export default{
             for (let item of state.carts.ls_prod) {
                 total += item.totalPrice;
             }
+<<<<<<< HEAD
 
             state.carts.cartTotal = total
             //clear localStorage & set again
@@ -56,6 +57,9 @@ export default{
                     totalOrder: total.toFixed(2)
                 })
             )
+=======
+            state.carts.cartTotal = total
+>>>>>>> 1642c826c4f8ec8418feac74916e5222a8cadcca
         },
         SET_CARTS(state){
             let localStored = JSON.parse(localStorage.getItem('khoruou_carts'))
@@ -66,8 +70,25 @@ export default{
             }
         },
         DELETE_CARTS(state){
-            state.carts.ls_prod = []
-            state.carts.cartCount = state.carts.cartTotal = 0
+            state.carts = {
+                ls_prod: [],
+                cartCount: 0,
+                cartTotal: 0
+            }
+        },
+        UPDATE_CARTS(state, payload){
+            state.carts = payload
+        },
+        UPDATE_LOCALSTORAGE(state){
+            localStorage.setItem('khoruou_carts',
+                JSON.stringify({
+                    carts: state.carts.ls_prod,
+                    cartcount: state.carts.cartCount,
+                    totalOrder: state.carts.cartTotal
+                })
+            )
+        },
+        DELETE_LOCALSTORAGE(){
             localStorage.removeItem('khoruou_carts')
         },
         SET_USER_INFO(state){
@@ -77,5 +98,18 @@ export default{
             // }
         }
     },
-    actions:{}
+    actions:{
+        add_to_carts: async (context, prod) => {
+            await context.commit('ADD_TO_CART', prod)
+            context.commit('UPDATE_LOCALSTORAGE')
+        },
+        update_carts: async (context, carts) => {
+            await context.commit('UPDATE_CARTS', carts)
+            context.commit('UPDATE_LOCALSTORAGE')
+        },
+        delete_carts: async (context) => {
+            await context.commit('DELETE_CARTS')
+            context.commit('DELETE_LOCALSTORAGE')
+        },
+    }
 }
