@@ -4,5 +4,6 @@ export const routes = [
     { path: '/SPTheoLoai/:MaLoai', component: require('./components/SPTheoLoai.vue').default },
     { path: '/SPTheoNCC/:MaNCC', component: require('./components/SPTheoNCC.vue').default },
     { path: '/SPTheoNSX/:MaNSX', component: require('./components/SPTheoNSX.vue').default },
+    { path: '/khachhang', component: require('./components/QLKHang.vue').default },
 
 ];

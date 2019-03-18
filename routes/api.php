@@ -32,3 +32,5 @@ Route::apiResources(['nhasanxuat'=>'Nhasanxuat_Controller']);
 Route::apiResources(['hoadon'=>'HoaDonController']);
 
 Route::apiResources(['user'=>'UserController']);
+
+Route::apiResources(['khachhang'=>'QLKHang_Controller']);

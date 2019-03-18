@@ -115,7 +115,7 @@ export default {
               if(data.data.isSuccess){
                 window.print()
                 this.$store.commit('DELETE_CARTS')
-                location = '/'
+                this.$router.push ('/')
               }
             })
             .catch(()=>{

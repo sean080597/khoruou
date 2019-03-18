@@ -46,6 +46,8 @@ export default{
             for (let item of state.carts.ls_prod) {
                 total += item.totalPrice;
             }
+
+            state.carts.cartTotal = total
             //clear localStorage & set again
             localStorage.setItem('khoruou_carts',
                 JSON.stringify({
