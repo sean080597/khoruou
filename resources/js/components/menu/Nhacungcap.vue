@@ -1,6 +1,6 @@
 <template>
     <div>
-          <ul class="treeview-menu" v-for="(nhacungcap, index) in ds_ncc" :key="nhacungcap.MaNCC">
+          <ul class="treeview-menu" v-for="(nhacungcap) in ds_ncc" :key="nhacungcap.MaNCC">
             <li><router-link class="treeview-item" :to=" '/SPTheoNCC/' + nhacungcap.MaNCC "><i class="icon fa fa-circle-o"></i> {{ nhacungcap.TenNCC }}</router-link></li>
           </ul>
     </div>

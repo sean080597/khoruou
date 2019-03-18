@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ul class="treeview-menu" v-for="(nhasanxuat, index) in ds_nhasanxuat" :key="nhasanxuat.MaNSX">
+        <ul class="treeview-menu" v-for="(nhasanxuat) in ds_nhasanxuat" :key="nhasanxuat.MaNSX">
             <li><router-link class="treeview-item" :to="'/SPTheoNSX/'+nhasanxuat.MaNSX"><i class="icon fa fa-circle-o"></i> {{nhasanxuat.TenNSX}}</router-link></li>
         </ul>
     </div>

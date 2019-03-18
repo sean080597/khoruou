@@ -45,7 +45,7 @@ export default {
             })
         },
         addToCart(item) {
-            this.$store.commit('ADD_TO_CART', item);
+            this.$store.dispatch('add_to_carts', item)
         }
     },
     created() {
@@ -60,6 +60,7 @@ export default {
                 alert('Error');
             })
         })
+        // this.$store.commit('DELETE_LOCALSTORAGE')
     },
 }
 </script>

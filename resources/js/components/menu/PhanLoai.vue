@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ul class="treeview-menu" v-for="(phanloai, index) in ds_loai" :key="phanloai.MaLoai">
+        <ul class="treeview-menu" v-for="(phanloai) in ds_loai" :key="phanloai.MaLoai">
             <li><router-link class="treeview-item" :to="'/SPTheoLoai/'+phanloai.MaLoai"><i class="icon fa fa-circle-o"></i> {{phanloai.TenLoai}}</router-link></li>
           </ul>
     </div>
