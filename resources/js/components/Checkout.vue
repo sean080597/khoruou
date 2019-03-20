@@ -119,15 +119,10 @@ export default {
             .then((data)=>{
               if(data.data.isSuccess){
                 window.print()
-<<<<<<< HEAD
-                this.$store.commit('DELETE_CARTS')
-                this.$router.push ('/')
-=======
                 this.$store.dispatch('delete_carts')
 
                 this.isCartDeleted = true
                 this.$router.push('/')
->>>>>>> 1642c826c4f8ec8418feac74916e5222a8cadcca
               }
             })
             .catch(()=>{
