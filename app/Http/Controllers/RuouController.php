@@ -25,7 +25,21 @@ class RuouController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request['MaNSX'];
+        $this->validate($request, [
+            'TenRuou' => 'required|string|max:50',
+        ]);
+        return ruou::create([
+            'MaRuou' => $request['MaRuou'],
+            'TenRuou' => $request['TenRuou'],
+            'MaNSX' => $request['MaNSX'],
+            'MaLoai' => $request['MaLoai'],
+            'MaNCC' => $request['MaNCC'],
+            'SoLuong' => $request['SoLuong'],
+            'DonGia' => $request['DonGia'],
+            'AnhRuou' => $request['AnhRuou'],
+            'Mota' => $request['Mota'],
+        ]);
     }
 
     /**
@@ -46,9 +60,10 @@ class RuouController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $ruou_id)
     {
-        //
+        ruou::findOrFail($ruou_id)->update($request->all());
+        return response()->json(['success'=>'success'],200);
     }
 
     /**
@@ -57,9 +72,10 @@ class RuouController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($ruou_id)
     {
-        //
+        ruou::findOrFail($ruou_id)->delete();
+        return response()->json(['success'=>'success'],200);
     }
     public function TimKiemRuou(){
         if($Search = \Request::get('q')){

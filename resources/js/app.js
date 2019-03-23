@@ -34,6 +34,7 @@ Vue.component('phanloaimenu', require('./components/menu/PhanLoai.vue').default)
 Vue.component('nhacungcapmenu', require('./components/menu/Nhacungcap.vue').default);
 Vue.component('nhasanxuatmenu', require('./components/menu/Nhasanxuat.vue').default);
 Vue.component('giohangmenu', require('./components/menu/Giohangmenu.vue').default);
+
 window.Fire = new Vue();
 const app = new Vue({
     el: '#app',

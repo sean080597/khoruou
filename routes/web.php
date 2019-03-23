@@ -10,9 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// use App\ruou;
 Auth::routes();
-
+// Route::get('/try', function(){
+//     return ruou::find('1')->NhaSanXuat->TenNSX;
+// });
 Route::get('/getLoggedUser', function(){
     return response()->json(auth()->user());
 })->middleware('auth');

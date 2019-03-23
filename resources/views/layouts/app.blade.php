@@ -49,10 +49,10 @@
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="{{auth()->user()->image}}" alt="User Image" style="width: 30%;">
         <div>
-          <p class="app-sidebar__user-name">PhuHeo</p>
-          <p class="app-sidebar__user-designation">Nhân Viên</p>
+          <p class="app-sidebar__user-name">{{auth()->user()->name}}</p>
+          <p class="app-sidebar__user-designation">{{auth()->user()->chucvu->TenCV}}</p>
         </div>
       </div>
       <ul class="app-menu">
@@ -84,7 +84,7 @@
         </li>
 
         <li>
-          <router-link to="/" class="app-menu__item">
+          <router-link to="/ThongKe" class="app-menu__item">
             <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Thống kê</span>
           </router-link>
         </li>
@@ -94,6 +94,19 @@
             <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Địa chỉ</span>
           </router-link>
         </li>
+
+        <li>
+          <router-link to="/khachhang" class="app-menu__item">
+            <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Quản lý KH</span>
+          </router-link>
+        </li>
+
+        <li>
+          <router-link to="/QLyAdmin" class="app-menu__item">
+            <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Quản lý rượu</span>
+          </router-link>
+        </li>
+
       </ul>
     </aside>
 
@@ -111,7 +124,7 @@
   <script src="{{asset('theme/js/bootstrap.min.js')}}"></script>
   <!-- The javascript plugin to display page loading on top-->
   <script src="{{asset('theme/js/plugins/pace.min.js')}}"></script>
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{asset('js/app.js')}}" defer></script>
   <script src="{{asset('theme/js/main.js')}}" defer></script>
 </body>
 </html>

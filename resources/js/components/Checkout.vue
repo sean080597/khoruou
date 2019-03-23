@@ -101,6 +101,9 @@ export default {
             //calc total of order
             this.updateCarts()
             this.$store.commit('DELETE_ITEM', index)
+            if(this.carts.cartCount < 1){
+              this.$router.push('/')
+            }
           }
         },
         updateCarts(){
