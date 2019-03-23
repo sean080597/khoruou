@@ -5,7 +5,7 @@
             <h3 class="tile-title">Line Chart</h3>
             <!--div class="embed-responsive embed-responsive-16by9"-->
             <div>
-              <line-chart :chart-data="urlData" :height="100" :options="{responsive: true, maintainAspectRatio: true}"></line-chart>
+              <line-chart :chart-data="urlData" :height="100" currency="VNĐ"></line-chart>
             </div>
           </div>
         </div>
