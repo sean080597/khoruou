@@ -33,10 +33,6 @@ Route::apiResources(['hoadon'=>'HoaDonController']);
 
 Route::apiResources(['user'=>'UserController']);
 
-<<<<<<< HEAD
 Route::apiResources(['QLRuou'=>'QLRuou_Controller']);
 
 Route::apiResources(['ThongKe'=>'ThongKeController']);
-=======
-Route::apiResources(['khachhang'=>'QLKHang_Controller']);
->>>>>>> eeb771003cc9379300bfe43272a01aac324e75d5

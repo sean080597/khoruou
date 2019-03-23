@@ -101,15 +101,12 @@
           </router-link>
         </li>
 
-<<<<<<< HEAD
         <li>
           <router-link to="/QLyAdmin" class="app-menu__item">
             <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Quản lý rượu</span>
           </router-link>
         </li>
 
-=======
->>>>>>> eeb771003cc9379300bfe43272a01aac324e75d5
       </ul>
     </aside>
 
