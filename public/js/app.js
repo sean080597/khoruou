@@ -38986,11 +38986,7 @@ var render = function() {
           "div",
           [
             _c("line-chart", {
-              attrs: {
-                "chart-data": _vm.urlData,
-                height: 100,
-                options: { responsive: true, maintainAspectRatio: true }
-              }
+              attrs: { "chart-data": _vm.urlData, height: 100, currency: "VNĐ" }
             })
           ],
           1
@@ -55014,11 +55010,42 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+/* harmony import */ var accounting__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! accounting */ "./node_modules/accounting/accounting.js");
+/* harmony import */ var accounting__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(accounting__WEBPACK_IMPORTED_MODULE_1__);
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   extends: vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Line"],
   mixins: [vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactiveProp],
-  props: ['chartData', 'options'],
+  props: ['chartData', 'currency'],
+  computed: {
+    options: function options() {
+      var _this = this;
+
+      return {
+        responsive: true,
+        maintainAspectRatios: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              callback: function callback(value, index, values) {
+                return "".concat(accounting__WEBPACK_IMPORTED_MODULE_1___default.a.formatMoney(value, "", 0, ",", "."), " ").concat(_this.currency);
+              }
+            }
+          }]
+        },
+        tooltips: {
+          enabled: true,
+          callbacks: {
+            label: function label(tooltipItems, data) {
+              // console.log(tooltipItems)
+              return accounting__WEBPACK_IMPORTED_MODULE_1___default.a.formatMoney(tooltipItems.yLabel, "", 0, ",", ".") + ' ' + _this.currency;
+            }
+          }
+        }
+      };
+    }
+  },
   mounted: function mounted() {
     // this.chartData is created in the mixin.
     // If you want to pass options please create a local options object
