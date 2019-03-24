@@ -10,6 +10,9 @@ import VueRouter from 'vue-router'
 import {routes} from './routes'
 import StoreData from './store'
 import accounting from 'accounting'
+//add ACL(Access Control List)
+import Gate from './Gate'
+Vue.prototype.$gate = new Gate(window.user)
 
 //vuex manage state global
 Vue.use(Vuex)
@@ -34,6 +37,7 @@ Vue.component('phanloaimenu', require('./components/menu/PhanLoai.vue').default)
 Vue.component('nhacungcapmenu', require('./components/menu/Nhacungcap.vue').default);
 Vue.component('nhasanxuatmenu', require('./components/menu/Nhasanxuat.vue').default);
 Vue.component('giohangmenu', require('./components/menu/Giohangmenu.vue').default);
+Vue.component('not-found', require('./components/NotFound.vue').default);
 
 window.Fire = new Vue();
 const app = new Vue({

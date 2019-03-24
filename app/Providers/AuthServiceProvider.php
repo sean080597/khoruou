@@ -25,6 +25,16 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('isGiamDoc', function($user){
+            return $user->MaCV === 'GD';
+        });
+
+        Gate::define('isQuanLy', function($user){
+            return $user->MaCV === 'QL';
+        });
+
+        Gate::define('isNhanVien', function($user){
+            return $user->MaCV === 'NV';
+        });
     }
 }

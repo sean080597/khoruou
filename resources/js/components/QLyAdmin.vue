@@ -1,5 +1,6 @@
 <template>
-    <section class="module">
+<div>
+    <section class="module" v-if="!$gate.isNhanVien()">
         <div class="container">
             <div class="row">
                 <div class="col-6 offset-3">
@@ -56,7 +57,7 @@
                         <h4 v-show="editMode" class="modal-title">Sửa</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                    
+
                     <div class="modal-body">
                         <div class="form-group">
                             <input v-model="form.TenRuou" type="text" name="TenRuou" placeholder="Tên rượu"
@@ -84,23 +85,23 @@
                         </div>
 
                         <div class="form-group">
-                            <select class="form-control" name="TenNSX" 
+                            <select class="form-control" name="TenNSX"
                             v-model="form.MaNSX">
-                                <option :value='item.MaNSX' v-for="(item, index) in ds_nsx" :key="item.MaNSX">{{item.TenNSX}}</option>
+                                <option :value='item.MaNSX' v-for="(item) in ds_nsx" :key="item.MaNSX">{{item.TenNSX}}</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <select class="form-control" name="TenLoai" 
+                            <select class="form-control" name="TenLoai"
                             v-model="form.MaLoai">
-                                <option :value='item.MaLoai' v-for="(item, index) in ds_pl" :key="item.MaLoai">{{item.TenLoai}}</option>
+                                <option :value='item.MaLoai' v-for="(item) in ds_pl" :key="item.MaLoai">{{item.TenLoai}}</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <select class="form-control" name="TenNCC"
                             v-model="form.MaNCC">
-                                <option :value='item.MaNCC'  v-for="(item, index) in ds_ncc" :key="item.MaNCC">{{item.TenNCC}}</option>
+                                <option :value='item.MaNCC'  v-for="(item) in ds_ncc" :key="item.MaNCC">{{item.TenNCC}}</option>
                             </select>
                         </div>
                     </div>
@@ -116,6 +117,11 @@
         </div>
         </div>
     </section>
+
+    <div class="mb-5" v-else>
+        <not-found></not-found>
+    </div>
+</div>
 </template>
 <script>
 export default {
@@ -141,9 +147,11 @@ export default {
     },
     methods: {
         loadQLRuou(){
-            axios.get('/api/QLRuou').then((data)=>{
-                this.ds_qlruou=data.data
-            })
+            if(!this.$gate.isNhanVien()){
+                axios.get('/api/QLRuou').then((data)=>{
+                    this.ds_qlruou=data.data
+                })
+            }
         },
         removeItem(ruou_id){
           if(confirm('Bạn có muốn xóa khỏi danh sách khách hàng thân thiết?')){
@@ -206,8 +214,6 @@ export default {
         createRuou(){
             axios.post('/api/ruou',this.form)
             .then(() => {
-                //set event to reload faculties
-                
                 $('#AddRuou').modal('hide')
                 alert('Đã thêm thành công');
                 this.loadQLRuou();
@@ -217,15 +223,17 @@ export default {
             })
         },
         chooseRuou(){
-            axios.get('/api/nhasanxuat').then((data)=>{
-                this.ds_nsx=data.data
-            }),
-            axios.get('/api/phanloai').then((data)=>{
-                this.ds_pl=data.data
-            }),
-             axios.get('/api/nhacungcap').then((data)=>{
-                this.ds_ncc=data.data
-            })
+            if(!this.$gate.isNhanVien()){
+                axios.get('/api/nhasanxuat').then((data)=>{
+                    this.ds_nsx=data.data
+                }),
+                axios.get('/api/phanloai').then((data)=>{
+                    this.ds_pl=data.data
+                }),
+                axios.get('/api/nhacungcap').then((data)=>{
+                    this.ds_ncc=data.data
+                })
+            }
         },
     },
     created() {
