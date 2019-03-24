@@ -35,4 +35,6 @@ Route::apiResources(['user'=>'UserController']);
 
 Route::apiResources(['QLRuou'=>'QLRuou_Controller']);
 
+Route::get('/thongke_laynam', 'ThongKeController@layNam');
+Route::get('/thongke_laytheonam', 'ThongKeController@layThongKeTheoNam');
 Route::apiResources(['ThongKe'=>'ThongKeController']);

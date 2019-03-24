@@ -82,13 +82,13 @@
             <giohangmenu></giohangmenu>
           </router-link>
         </li>
-
+        @can('isGiamDoc')
         <li>
           <router-link to="/ThongKe" class="app-menu__item">
             <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Thống kê</span>
           </router-link>
         </li>
-
+        @endcan
         <li>
           <router-link to="/" class="app-menu__item">
             <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Địa chỉ</span>
@@ -100,13 +100,13 @@
             <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Quản lý KH</span>
           </router-link>
         </li>
-
+        @cannot('isNhanVien')
         <li>
           <router-link to="/QLyAdmin" class="app-menu__item">
             <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Quản lý rượu</span>
           </router-link>
         </li>
-
+        @endcan
       </ul>
     </aside>
 
@@ -117,6 +117,13 @@
     </main>
     {{-- end content --}}
   </div>
+
+  @auth
+    <script>
+        window.user = @json(auth()->user());
+        // console.log(@json(auth()->user()));
+    </script>
+    @endauth
 
   <!-- Essential javascripts for application to work-->
   <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
