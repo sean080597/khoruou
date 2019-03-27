@@ -1,5 +1,5 @@
 export const routes = [
-    { path: '/', component: require('./components/Dashboard.vue').default },
+    { path: '/', component: require('./components/Dashboard_lab.vue').default },
     { path: '/checkout', component: require('./components/Checkout.vue').default },
     { path: '/SPTheoLoai/:MaLoai', component: require('./components/SPTheoLoai.vue').default },
     { path: '/SPTheoNCC/:MaNCC', component: require('./components/SPTheoNCC.vue').default },

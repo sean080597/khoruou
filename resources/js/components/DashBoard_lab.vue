@@ -1,8 +1,19 @@
 <template>
-    <div class="row">
+<div>
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-dashboard"></i> Trang chủ</h1>
+            <!-- <p>Start a beautiful journey here</p> -->
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        </ul>
+    </div>
 
-        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="margin-bottom:15px"
-        v-for="(ruou) in SP_NSX" :key="ruou.MaRuou">
+    <div class="row justify-content-start">
+
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-10" style="margin-bottom:15px"
+        v-for="(ruou) in ds_ruou" :key="ruou.MaRuou">
             <div class="card" style="width: 100%">
                 <img class="card-img-top" :src="ruou.AnhRuou" alt="Card image cap" style="height:200px;">
                 <div class="card-body">
@@ -10,45 +21,46 @@
                     <p class="card-text">{{ruou.DonGia}} VNĐ</p>
                     <p class="card-text">Còn {{ruou.SoLuong}} sản phẩm</p>
                     <!--p class="card-text">Rượu bán chó uống</p-->
-                    <a href="#" class="btn btn-primary" @click=addToCart(ruou)>Thêm vào giỏ</a>
+                    <button class="btn btn-primary" @click=addToCart(ruou)>Thêm vào giỏ</button>
                 </div>
             </div>
         </div>
 
     </div>
+
+</div>
 </template>
+
 <script>
 export default {
     data() {
         return {
-            MaNSX: this.$route.params.MaNSX,
-            SP_NSX: {}
+            ds_ruou:{},
         }
     },
     methods: {
-        LoadSPTheoNSX(){
-            axios.get('/api/SPTheoNSX/'+this.MaNSX).then(
-                data=>{
-                    this.SP_NSX=data.data
-                }
-            )
+        loadSP(){
+            axios.get('/api/ruou').then((data)=>{
+                this.ds_ruou=data.data
+            })
         },
-         addToCart(item) {
+        addToCart(item) {
             this.$store.dispatch('add_to_carts', item)
         }
     },
     created() {
-        this.LoadSPTheoNSX();
+        this.loadSP();
         Fire.$on('Searching',()=>{
             let query = this.$parent.search;
-            axios.get('/api/TimKiemRuou?q='+query+'&nsx='+this.MaNSX)
+            axios.get('/api/TimKiemRuou?q='+query)
             .then((data)=>{
-                this.SP_NSX=data.data
+                this.ds_ruou=data.data
             })
             .catch(()=>{
                 alert('Error');
             })
         })
+        // this.$store.commit('DELETE_LOCALSTORAGE')
     },
 }
 </script>

@@ -12,7 +12,7 @@
 
     <div class="row">
 
-        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="margin-bottom:15px"
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12" style="margin-bottom:15px"
         v-for="(ruou) in ds_ruou" :key="ruou.MaRuou">
             <div class="card" style="width: 100%">
                 <img class="card-img-top" :src="ruou.AnhRuou" alt="Card image cap" style="height:200px;">

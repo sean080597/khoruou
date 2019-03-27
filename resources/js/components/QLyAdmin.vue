@@ -154,19 +154,19 @@ export default {
             }
         },
         removeItem(ruou_id){
-          if(confirm('Bạn có muốn xóa khỏi danh sách khách hàng thân thiết?')){
+          if(confirm('Bạn có muốn xóa không?')){
             axios.delete("/api/ruou/"+ruou_id)
             .then(()=>{
                 this.loadQLRuou();
-                alert('ban da xoa thanh cong');
+                alert('bạn đã xóa thành công');
             });
           }
         },
-        EditItem(index){
-          if(confirm('Bạn có muốn sửa rượu không?')){
-            this.carts.ds_qlruou.splice(index, 1)
-          }
-        },
+        // EditItem(index){
+        //   if(confirm('Bạn có muốn sửa rượu không?')){
+        //     this.carts.ds_qlruou.splice(index, 1)
+        //   }
+        // },
         resetForm(){
             this.form.TenRuou='',
             this.form.AnhRuou='',
@@ -207,7 +207,7 @@ export default {
             .then(()=>{
                 $('#AddRuou').modal('hide')
                 this.loadQLRuou();
-                alert('ban da sửa thanh cong');
+                alert('ban da sua thanh cong');
             });
           }
         },

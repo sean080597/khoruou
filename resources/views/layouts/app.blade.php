@@ -89,17 +89,6 @@
           </router-link>
         </li>
         @endcan
-        <li>
-          <router-link to="/" class="app-menu__item">
-            <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Địa chỉ</span>
-          </router-link>
-        </li>
-
-        <li>
-          <router-link to="/khachhang" class="app-menu__item">
-            <i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Quản lý KH</span>
-          </router-link>
-        </li>
         @cannot('isNhanVien')
         <li>
           <router-link to="/QLyAdmin" class="app-menu__item">
