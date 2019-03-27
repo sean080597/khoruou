@@ -10,7 +10,7 @@
                     <p class="card-text">{{ruou.DonGia}} VNĐ</p>
                     <p class="card-text">Còn {{ruou.SoLuong}} sản phẩm</p>
                     <!--p class="card-text">Rượu bán chó uống</p-->
-                    <a href="#" class="btn btn-primary">Thêm vào giỏ</a>
+                    <a href="#" class="btn btn-primary"  @click=addToCart(ruou)>Thêm vào giỏ</a>
                 </div>
             </div>
         </div>
@@ -32,6 +32,9 @@ export default {
                     this.SP_loai=data.data
                 }
             )
+        },
+         addToCart(item) {
+            this.$store.dispatch('add_to_carts', item)
         }
     },
     created() {
